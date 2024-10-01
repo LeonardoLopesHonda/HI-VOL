@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DadoAmostragem;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -21,8 +22,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    public function index() {
+        $user_id = auth()->id();
+        // $users = User::all();
+        $data = DadoAmostragem::where('user_id', $user_id)->get();
+        $user = User::where('id', $user_id)->get();
+
+        // dd($user);
+
+        return view('home', compact('data', 'user'));
     }
 }

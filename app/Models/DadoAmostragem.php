@@ -10,8 +10,10 @@ class DadoAmostragem extends Model
     use HasFactory;
 
     protected $fillable = [
-        'n_filtro',
         'data_amostragem',
+        'duracao',
+        'tipo_filtro',
+        'n_filtro',
         'user_id'
     ];
 

@@ -8,6 +8,16 @@ use App\Models\Filtro;
 use Illuminate\Support\Facades\Auth;
 
 class FiltroController extends Controller {
+    public function index(Request $request) {
+        $users = User::all();
+        // $amostragens = DadoAmostragem::get();
+        $filtros = Filtro::get();
+
+        // dd($user);
+
+        return view('filtros.home', compact('filtros', 'users'));
+    }
+
     public function create(Request $request) {
         $user_id = auth()->id();
         $data = $request->validate([
@@ -25,7 +35,7 @@ class FiltroController extends Controller {
         $data['user_id'] = $user_id;
         $filtro = Filtro::create($data);
 
-        return to_route('home')->with('message', 'Filtro foi cadastrado');
+        return to_route('filtros.home')->with('message', 'Filtro foi cadastrado');
     }
 
     public function delete(Request $request) {
@@ -33,7 +43,7 @@ class FiltroController extends Controller {
         $filtro = Filtro::findOrFail($id);
         $filtro->delete();
 
-        return to_route('home')->with('message', 'Filtro foi excluído');
+        return to_route('filtros.home')->with('message', 'Filtro foi excluído');
     }
 
     public function edit(Request $request) {
@@ -55,6 +65,6 @@ class FiltroController extends Controller {
 
         $filtro->update($data);
 
-        return to_route('home')->with('message', 'Filtro foi alterado');
+        return to_route('filtros.home')->with('message', 'Filtro foi alterado');
     }
 }

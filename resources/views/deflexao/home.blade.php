@@ -31,7 +31,7 @@
             {{ $date_amostragem }}
         </h2>
         <div>
-            <form action="" method="post" id="cadastroDeflexao">
+            <form action="{{ route('deflexao.add', ['id_amostragem' => $amostragem->first()->id]) }}" method="post" id="cadastroDeflexao">
                 @csrf
                 <!-- <section class="row d-flex justify-content-between">
                     <div class="col">
@@ -152,11 +152,17 @@
                     @for ($i = 1; $i <= 12; $i++)
                         <tr>
                             <td scope="row" class="text-center" disabled>{{$i}}</td>
-                            <td><input type="numeric" name="hora_{{$i}}" id="hora_{{$i}}" form="cadastroDeflexao" class="form-control d-flex"></td>
+                            <td><input type="number" name="hora_{{$i}}" id="hora_{{$i}}" form="cadastroDeflexao" class="form-control d-flex" value="0.00" step="0.01"></td>
                             <td scope="row" class="text-center" disabled>{{$second_interval + $i}}</td>
-                            <td><input type="numeric" name="hora_{{$second_interval + $i}}" id="hora_{{$second_interval + $i}}" form="cadastroDeflexao" class="form-control d-flex"></td>
+                            <td><input type="number" name="hora_{{$second_interval + $i}}" id="hora_{{$second_interval + $i}}" form="cadastroDeflexao" class="form-control d-flex" value="0.00" step="0.01"></td>
                         </tr>
                     @endfor
+                    <tr>
+                        <td scope="row" class="text-center" disabled>Peso Inicial do Filtro</td>
+                        <td><input type="number" name="peso_inicial_filtro" id="peso_inicial_filtro" form="cadastroDeflexao" class="form-control d-flex" value="0.00" step="0.01"></td>
+                        <td scope="row" class="text-center" disabled>Peso Final Filtro</td>
+                        <td><input type="number" name="peso_final_filtro" id="peso_final_filtro" form="cadastroDeflexao" class="form-control d-flex" value="0.00" step="0.01"></td>
+                    </tr>
                 </tbody>
             </table>
             <div class="mb-3">
@@ -164,5 +170,15 @@
             </div>
         </div>
     </div>
+    @if(session('message'))
+        <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{session('message')}}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
 </main>
 @endsection

@@ -26,5 +26,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 // Deflexão Routes
     Route::get('/amostragem/{id_amostragem}/deflexao/', [DeflexaoController::class, 'index'])->name('deflexao.home');
+    Route::post('/amostragem/{id_amostragem}/createDeflexao', [DeflexaoController::class, 'createOrUpdate'])->name('deflexao.add');
 
 Auth::routes();

@@ -35,6 +35,10 @@ return new class extends Migration {
             $table->integer('hora_22')->nullable();
             $table->integer('hora_23')->nullable();
             $table->integer('hora_24')->nullable();
+            $table->double('peso_inicial_filtro')->nullable();
+            $table->double('peso_final_filtro')->nullable();
+            $table->unsignedBigInteger('id_amostragem')->unsigned();
+            $table->foreign('id_amostragem')->references('id')->on('dado_amostragems')->onDelete('cascade');
             $table->timestamps();
         });
     }

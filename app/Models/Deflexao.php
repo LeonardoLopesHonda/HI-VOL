@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Deflexao extends Model {
     use HasFactory;
 
@@ -37,4 +38,8 @@ class Deflexao extends Model {
         "peso_final_filtro",
         "id_amostragem"
     ];
+
+    public function dadoAmostragem(){
+        return $this->belongsTo(DadoAmostragem::class);
+    }
 }

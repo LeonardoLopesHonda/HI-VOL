@@ -23,4 +23,8 @@ class Filtro extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function DadoAmostragem(){
+        return $this->belongsTo(DadoAmostragem::class);
+    }
 }

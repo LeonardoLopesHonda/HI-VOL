@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Filtro;
 use App\Models\DadoAmostragem;
+use App\Models\DadoCampo;
+use App\Models\Deflexao;
 
 class DadoAmostragemController extends Controller {
     public function index(Request $request) {
         $users = User::all();
         $amostragens = DadoAmostragem::get();
         $filtros = Filtro::get();
-
-        // dd($user);
 
         return view('amostragens.home', compact('amostragens', 'filtros' , 'users'));
     }
